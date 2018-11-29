@@ -1,6 +1,6 @@
 import React from 'react'
-import MainLayout from '../components/layout/main'
 import ReactPlayer from 'react-player'
+import MainLayout from '../components/layout/main'
 import AppStoreButton from '../components/appstore-button'
 
 const HomePage = ({ posts }) => (

@@ -13,27 +13,15 @@ export default ({
       {children}
     </main>
 
-    <style jsx global>{`
-      :global(body) {
-        margin: 0;
-        padding: 0;
-      }
-      * {
-        font-family: 'Roboto', sans-serif;
-      }
-      :global(a) {
-        text-decoration: none;
-        color: #458B7C;
-      }
+    <style jsx>{`
       main {
-        max-width: 960px;
-        margin: 0 auto;
-        height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: row;
+        flex-direction: column;
+        height: 100vh;
       }
     `}</style>
+
   </React.Fragment>
 )
