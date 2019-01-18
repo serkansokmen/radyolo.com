@@ -57,8 +57,8 @@ const Head = props => (
       <meta name="msapplication-square310x310logo" content="./static/img/mstile-310x310.png" />
       <meta name="theme-color" content="#ffffff"/>
 
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossOrigin="anonymous" />
-      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet"></link>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossOrigin="anonymous"/>
       <link href="./static/css/devices.min.css" rel="stylesheet" />
 
     </NextHead>
@@ -68,7 +68,7 @@ const Head = props => (
         padding: 0;
       }
       * {
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Lato', sans-serif;
       }
       a {
         text-decoration: none;

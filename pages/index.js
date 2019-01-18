@@ -45,7 +45,7 @@ const HomePage = ({ posts }) => (
         html,
         body {
           height: 100%;
-          font-family: 'Roboto', sans-serif;
+          font-family: 'Lato', sans-serif;
         }
         
         .react-player {

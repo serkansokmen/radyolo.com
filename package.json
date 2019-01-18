@@ -2,17 +2,26 @@
   "name": "radyolo.com",
   "version": "1.0.0",
   "scripts": {
-    "dev": "next",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production next start -p 8000",
+    "start": "NODE_ENV=production node server.js",
     "lint": "standard"
   },
   "dependencies": {
+    "@google-cloud/text-to-speech": "^0.4.0",
+    "@zeit/next-css": "^1.0.1",
+    "express": "^4.16.4",
+    "isomorphic-fetch": "^2.2.1",
     "next": "^7.0.2",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-player": "^1.7.0"
+    "react-lazyload": "^2.3.0",
+    "react-player": "^1.7.0",
+    "react-virtualized": "^9.21.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
+    "twit": "^2.2.11"
   },
   "devDependencies": {
     "standart": "^6.1.0"
