@@ -10,9 +10,11 @@
   "dependencies": {
     "@google-cloud/text-to-speech": "^0.4.0",
     "@zeit/next-css": "^1.0.1",
+    "blockstack": "^18.2.1",
     "express": "^4.16.4",
     "isomorphic-fetch": "^2.2.1",
     "next": "^7.0.2",
+    "normalize.css": "^8.0.1",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",

@@ -1,0 +1,15 @@
+{
+  "name": "Radyolo",
+  "start_url": "https://radyolo.com",
+  "description": "Twitter Streaming Radio",
+  "icons": [{
+    "src": "https://radyolo.com/static/img/app-icons/Icon-512.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  },
+  {
+    "src": "https://radyolo.com/static/img/app-icons/Icon-512.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
+}

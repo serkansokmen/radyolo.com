@@ -2,28 +2,9 @@ import React from 'react'
 import MainLayout from '../components/layout/main'
 import io from 'socket.io-client'
 import fetch from 'isomorphic-fetch'
-import { AutoSizer, CellMeasurer,
-  CellMeasurerCache,
-  createMasonryCellPositioner,
-  Masonry } from 'react-virtualized'
-  import LazyLoad from 'react-lazyload'
 
 import 'react-virtualized/styles.css'
-
-// Default sizes help Masonry decide how many images to batch-measure
-const cache = new CellMeasurerCache({
-  defaultHeight: 240,
-  defaultWidth: 320,
-  fixedWidth: true
-})
-
-// Our masonry layout will use 3 columns with a 10px gutter between
-const cellPositioner = createMasonryCellPositioner({
-  cellMeasurerCache: cache,
-  columnCount: 3,
-  columnWidth: 320,
-  spacer: 20
-})
+import TweetList from '../components/tweet-list'
 
 class Stream extends React.Component {
 
@@ -107,41 +88,6 @@ class Stream extends React.Component {
     this.setState(() => ({ error }))
   }
 
-  cellRenderer = ({ index, key, parent, style }) => {
-    const tweet = this.state.tweets[index]
-  
-    return (
-      <CellMeasurer
-        cache={cache}
-        index={index}
-        key={key}
-        parent={parent}
-      >
-        <div style={style}>
-          <div className="cell-container">
-            <h3>
-              <LazyLoad height={32}>
-                <img src={tweet.user.profile_image_url_https} style={{ width: 32, height: 32 }}/>
-              </LazyLoad>
-              {tweet.user.screen_name}
-            </h3>
-            <p>{tweet.text}</p>
-            {tweet.user.location && <p><span><i className="fas fa-map-marker"></i> {tweet.user.location}</span></p>}
-          </div>
-        </div>
-        <style jsx>{`
-        .cell-container {
-          padding: 0.2rem 1.2rem;
-          box-shadow: 0px 5px 12px -6px rgba(0,0,0,0.75);
-          border-radius: 8px;
-          background-color: #f1f1f1;
-          border: 2px solid white;
-        }
-        `}</style>
-      </CellMeasurer>
-    )
-  }
-
   render() {
 
     const { keywords, tweets, connected, error } = this.state
@@ -149,54 +95,84 @@ class Stream extends React.Component {
     return (
       <MainLayout>
         <div className="container">
-          <h1>{JSON.stringify(keywords, null, 2)} <small>({tweets.length})</small></h1>
-          {/* <p><strong>{connected ? 'connected' : 'disconnected'}</strong></p> */}
-
-          <button onClick={(e) => {
-            connected ? this.disconnectFromStream() : this.connectToStream()
-          }}>{connected ? 'Stop' : 'Stream'}</button>
-          
-          <div className="tweets">
-            <AutoSizer>
-              {({ height, width }) => (
-                <Masonry
-                  cellCount={tweets.length}
-                  cellMeasurerCache={cache}
-                  cellPositioner={cellPositioner}
-                  cellRenderer={this.cellRenderer}
-                  height={height}
-                  width={width}/>
-              )}
-            </AutoSizer>
+          <div className="row">
+            <button className={connected ? 'toggle-btn active' : 'toggle-btn'} onClick={(e) => {
+                connected ? this.disconnectFromStream() : this.connectToStream()
+              }}>{connected ? <span className="fas fa-pause"></span> : <span className="fas fa-play"></span>}</button>
+            <div className="grow">
+              <h1>{JSON.stringify(keywords, null, 2)} <small>({tweets.length})</small></h1>
+            </div>
+            {connected && <img className="connected-anim" src="/static/img/BLAHani.gif" />}
           </div>
+
+          <TweetList tweets={tweets} />
           
           {error.message && <div>{error.message}</div>}
           
           <style jsx>{`
           .container {
             width: 90%;
-            height: 60%;
+            min-height: 70%;
             display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
+            align-items: stretch;
+            justify-content: space-around;
             flex-direction: column;
+            margin: 0 auto;
           }
-          .tweets {
-            flex: 1 0 auto;
-            width: 100%;
-            height: 100%;
+          .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: row;
           }
-          h1 {
+          .row .grow {
+            flex: 2 1 auto;
+            margin: 0.8rem;
+          }
+          .row .grow h1 {
             font-size: 1.6rem;
+            margin: 0;
+            padding: 0;
           }
-          h2 {
-            font-size: 1.45rem;
+          .toggle-btn {
+            padding: 1.2rem;
+            border: 1px solid transparent;
+            background: #c3c3c3;
+            display: inline-block;
+            border-radius: 6px;
+            transition: all 0.4s ease;
+            color: white;
+            cursor: pointer;
+            flex: 0 1 auto;
           }
-          h3 {
-            font-size: 1.3rem;
+          .toggle-btn.active {
+            border: 1px solid #47b9e6;
+            background: #f1f0f0;
           }
-          p {
-            font-size: 1.2rem;
+          .toggle-btn span.fas {
+            font-size: 1.6rem;
+            vertical-align: middle;
+            // transform: translateY(-50%);
+          }
+          .connected-anim {
+            height: 72px;
+          }
+          @media screen and (min-width: 320px) {
+            .container {
+              width: 70%;
+              min-height: 70%;
+            }
+          }
+          
+          @media screen and (min-width: 1000px) {
+            .container {
+              width: 80%;
+              min-height: 50%;
+            }
+          }
+
+          *:focus {
+            outline: none;
           }
           `}</style>
         </div>
