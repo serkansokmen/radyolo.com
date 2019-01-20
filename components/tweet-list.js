@@ -10,7 +10,7 @@ import LazyLoad from 'react-lazyload'
 
 // Default sizes help Masonry decide how many images to batch-measure
 const cache = new CellMeasurerCache({
-  defaultHeight: 240,
+  defaultHeight: 340,
   defaultWidth: 320,
   fixedWidth: true,
 })

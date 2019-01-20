@@ -19,11 +19,14 @@ class Stream extends React.Component {
   }
 
   static async getInitialProps({ req }) {
-    const response = await fetch(`http://localhost:3000/tweets`)
+    const prod = process.env.NODE_ENV === 'production'
+    const response = await fetch(
+      prod ? `https://radyolo.com/tweets` : `http://localhost:3000/tweets`
+    )
     const tweets = await response.json()
     return {
       initialTweets: tweets,
-      keywords: ['amk', 'aq', 'mk'],
+      keywords: ['amk', 'aq'],
       language: 'tr',
     }
   }
@@ -55,13 +58,15 @@ class Stream extends React.Component {
                         </div>
                       )}
                     </div>
-                    <div className="row">
-                      <TwitterStream
-                        initialTweets={initialTweets}
-                        keywords={keywords}
-                        language={language}
-                      />
-                    </div>
+                    {isAuthenticated && (
+                      <div className="row">
+                        <TwitterStream
+                          initialTweets={initialTweets}
+                          keywords={keywords}
+                          language={language}
+                        />
+                      </div>
+                    )}
                   </>
                 )}
               </div>
