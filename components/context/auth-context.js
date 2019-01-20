@@ -9,7 +9,7 @@ const AuthContext = createContext({
     },
     avatarUrl() {
       return 'https://s3.amazonaws.com/onename/avatar-placeholder.png'
-    }
+    },
   },
   isAuthenticated: null,
   onSignIn: () => {},
@@ -19,7 +19,6 @@ const AuthContext = createContext({
 export default AuthContext.Consumer
 
 export class AuthProvider extends React.Component {
-
   state = {
     user: null,
     isAuthenticated: null,
@@ -43,12 +42,13 @@ export class AuthProvider extends React.Component {
         isLoading: false,
       }))
     } else if (blockstack.isSignInPending()) {
-      blockstack.handlePendingSignIn()
-        .then(({ profile }) => this.setState(() => ({
+      blockstack.handlePendingSignIn().then(({ profile }) =>
+        this.setState(() => ({
           user: new blockstack.Person(profile),
           isAuthenticated: true,
           isLoading: false,
-        })))
+        }))
+      )
     } else {
       this.setState(() => ({ isAuthenticated: false, isLoading: false }))
     }
@@ -56,18 +56,26 @@ export class AuthProvider extends React.Component {
 
   render() {
     return (
-      <AuthContext.Provider value={{
-        ...this.state,
-        onSignIn: () => {
-          const { origin, pathname } = window.location
-          const prod = process.env.NODE_ENV === 'production'
-          blockstack.redirectToSignIn(origin + pathname, `${origin}/static/manifest${!prod && '.dev'}.json`, ['store_write', 'publish_data'])
-        },
-        onSignOut: () => {
-          const { origin, pathname } = window.location
-          blockstack.signUserOut(origin + pathname)
-        }
-      }}>{this.props.children}</AuthContext.Provider>
+      <AuthContext.Provider
+        value={{
+          ...this.state,
+          onSignIn: () => {
+            const { origin, pathname } = window.location
+            const prod = process.env.NODE_ENV === 'production'
+            blockstack.redirectToSignIn(
+              origin + pathname,
+              `${origin}/static/manifest${!prod && '.dev'}.json`,
+              ['store_write', 'publish_data']
+            )
+          },
+          onSignOut: () => {
+            const { origin, pathname } = window.location
+            blockstack.signUserOut(origin + pathname)
+          },
+        }}
+      >
+        {this.props.children}
+      </AuthContext.Provider>
     )
   }
 }

@@ -6,40 +6,52 @@ import AppStoreButton from '../components/appstore-button'
 const HomePage = ({ posts }) => (
   <MainLayout>
     <div className="home">
-      
       <div className="branding">
-        <img className="app-logo" src="/static/img/radyolo-header@2x.png" alt="Radyolo" height="40"/>
-        <a href="https://itunes.apple.com/us/app/radyolo/id1158542397" target="_blank">
-          <AppStoreButton width={120} height={40}/>
+        <img
+          className="app-logo"
+          src="/static/img/radyolo-header@2x.png"
+          alt="Radyolo"
+          height="40"
+        />
+        <a
+          href="https://itunes.apple.com/us/app/radyolo/id1158542397"
+          target="_blank"
+        >
+          <AppStoreButton width={120} height={40} />
         </a>
         <div className="links">
-          <a href="mailto:hello@radyolo.com">Contact</a>
-          |
-          <a href="https://www.iubenda.com/privacy-policy/8101275" target="_blank">Privacy & Policy</a>
+          <a href="mailto:hello@radyolo.com">Contact</a>|
+          <a
+            href="https://www.iubenda.com/privacy-policy/8101275"
+            target="_blank"
+          >
+            Privacy & Policy
+          </a>
         </div>
       </div>
       <div className="marvel-device iphone5s silver">
-        <div className="top-bar"></div>
-        <div className="sleep"></div>
-        <div className="volume"></div>
-        <div className="camera"></div>
-        <div className="sensor"></div>
-        <div className="speaker"></div>
+        <div className="top-bar" />
+        <div className="sleep" />
+        <div className="volume" />
+        <div className="camera" />
+        <div className="sensor" />
+        <div className="speaker" />
         <div className="screen">
-          <ReactPlayer url={[
-            '/static/video/radyolo-app-preview.webm',
-            '/static/video/radyolo-app-preview.ogg',
-            '/static/video/radyolo-app-preview.mp4'
-          ]} playing 
-          width='100%'
-          height='100%'/>
+          <ReactPlayer
+            url={[
+              '/static/video/radyolo-app-preview.webm',
+              '/static/video/radyolo-app-preview.ogg',
+              '/static/video/radyolo-app-preview.mp4',
+            ]}
+            playing
+            width="100%"
+            height="100%"
+          />
         </div>
-        <div className="home"></div>
-        <div className="bottom-bar"></div>
+        <div className="home" />
+        <div className="bottom-bar" />
       </div>
       {/* <img className="app-logo-responsive" src="/static/img/radyolo-header@2x.png" alt="Radyolo" height="40"/> */}
-
-
 
       <style jsx>{`
         .react-player {
@@ -61,7 +73,8 @@ const HomePage = ({ posts }) => (
         .appstore-link {
           display: inline-block;
           overflow: hidden;
-          background: url(//linkmaker.itunes.apple.com/static/shared/badges/en-us/appstore-lrg.svg) no-repeat;
+          background: url(//linkmaker.itunes.apple.com/static/shared/badges/en-us/appstore-lrg.svg)
+            no-repeat;
           width: 135px;
           height: 40px;
           background-size: contain;
@@ -101,7 +114,7 @@ const HomePage = ({ posts }) => (
           width: 100%;
           height: 100%;
         }
-  
+
         @media screen and (max-width: 475px) {
           .home {
             flex-direction: column-reverse;
@@ -119,8 +132,7 @@ const HomePage = ({ posts }) => (
 )
 
 HomePage.getInitialProps = async () => {
-  return { 
-  }
+  return {}
 }
 
 export default HomePage
