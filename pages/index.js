@@ -42,12 +42,6 @@ const HomePage = ({ posts }) => (
 
 
       <style jsx>{`
-        html,
-        body {
-          height: 100%;
-          font-family: 'Lato', sans-serif;
-        }
-        
         .react-player {
           position: absolute;
           top: 0;

@@ -8,6 +8,8 @@ const defaultKeywords = 'social, streaming, live, listen, tweets, location, tren
 const defaultOGURL = 'https://radyolo.com'
 const defaultOGImage = './static/img/radyolo-meta.jpg'
 
+// import 'normalize.css'
+
 const Head = props => (
   <div>
     <NextHead>
@@ -62,19 +64,6 @@ const Head = props => (
       <link href="./static/css/devices.min.css" rel="stylesheet" />
 
     </NextHead>
-    <style jsx global>{`
-      body {
-        margin: 0;
-        padding: 0;
-      }
-      * {
-        font-family: 'Lato', sans-serif;
-      }
-      a {
-        text-decoration: none;
-        color: #458B7C;
-      }
-    `}</style>
   </div>
 )
 
