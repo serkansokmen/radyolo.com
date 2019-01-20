@@ -2,5 +2,18 @@
   "version": 2,
   "builds": [
     { "src": "package.json", "use": "@now/next" }
-  ]
+  ],
+  "static": {
+    "headers": [
+      {
+        "source": "./static/manifest.json",
+        "headers": [
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          }
+        ]
+      }
+    ]
+  }
 }

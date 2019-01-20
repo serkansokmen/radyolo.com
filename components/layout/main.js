@@ -1,12 +1,12 @@
 import React from 'react'
 import Head from '../html/head'
 
-export default ({ 
+const Layout = ({ 
   children, 
   title = 'Radyolo - Twitter Streaming Radio',
   description,
 }) => (
-  <React.Fragment>
+  <>
     <Head title={title} description={description}/>
     
     <main>
@@ -52,5 +52,7 @@ export default ({
       }
     `}</style>
 
-  </React.Fragment>
+  </>
 )
+
+export default Layout

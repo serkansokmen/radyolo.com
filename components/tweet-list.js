@@ -60,14 +60,14 @@ export default ({ tweets }) => {
             cellMeasurerCache={cache}
             cellPositioner={cellPositioner}
             cellRenderer={cellRenderer}
-            height={height}
-            width={width}/>
+            height={height || 320}
+            width={width || 320}/>
         )}
       </AutoSizer>
   
-      <style jsx>{`
+      <style jsx scoped>{`
       .tweets {
-        flex: 1 0 100%;
+        flex: 1 1 auto; 
         display: block;
         width: 100%;
         height: auto;
